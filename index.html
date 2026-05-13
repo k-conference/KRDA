@@ -7,9 +7,8 @@
     <style>
         /* 기본 스타일 및 부드러운 스크롤 */
         html { scroll-behavior: smooth; }
-        body { font-family: 'Pretendard', sans-serif; line-height: 1.6; margin: 0; color: #333; }
+        body { font-family: 'Pretendard', sans-serif; line-height: 1.6; margin: 0; color: #333; padding-top: 70px; } /* 헤더 고정으로 인한 본문 가림 방지 */
         
-        /* 헤더 & 네비게이션 수정 */
         /* 헤더 & 네비게이션 수정 */
         header { 
             position: fixed; 
@@ -20,29 +19,44 @@
             z-index: 1000; 
         }
         
-        /* nav와 nav div 모두 중앙 정렬을 강제합니다 */
-        nav, nav div { 
+        /* PC 버전: 로고와 메뉴를 한 줄로 양끝 정렬 */
+        nav { 
             display: flex; 
-            justify-content: left; 
-            align-items: left; 
-            width: 80%;       /* 전체 너비 확보 */
-            margin: 0 auto;    /* 외부 마진 초기화 */
-            padding: 0px 0;   /* 좌우 패딩을 0으로 만들어 쏠림 방지 */
+            justify-content: space-between; 
+            align-items: center; 
+            width: 85%;       
+            max-width: 1200px;
+            margin: 0 auto;    
+            padding: 10px 0;   
         }
         
-        /* 메뉴 간의 간격 설정 */
+        /* 로고 이미지 크기 및 레이아웃 제어 */
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-logo {
+            height: 42px; /* PC 환경에서 스마트하게 줄어든 로고 높이 */
+            width: auto;
+            display: block;
+        }
+
+        /* 메뉴들을 감싸는 박스 */
         nav div { 
+            display: flex;
+            align-items: center;
             flex-wrap: wrap; 
-            gap: 10px 25px;    /* 마진 대신 gap으로만 간격 조절 */
+            gap: 10px 25px;    
         }
         
-        /* 개별 메뉴 스타일 - 마진을 완전히 제거 */
+        /* 개별 메뉴 스타일 */
         nav a { 
             text-decoration: none; 
             color: #333; 
             font-weight: bold; 
-            margin: 0 !important;   /* 어떤 마진도 허용하지 않음 */
-            padding: 5px 10px;      /* 클릭 영역 확보를 위한 내부 패딩 */
+            margin: 0 !important;   
+            padding: 5px 10px;      
             white-space: nowrap; 
             font-size: 1rem;
         }
@@ -62,11 +76,11 @@
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { 
                     border: 1px solid #ddd; 
-                    padding: 6px 2px;    /* 위아래 6px, 좌우 2px로 대폭 줄임 */
+                    padding: 6px 2px;    
                     text-align: center; 
-                    font-size: 0.8rem;   /* 글자 크기를 줄여 한 칸에 들어가게 함 */
-                    letter-spacing: -0.5px; /* 자간을 줄여 가로폭 확보 */
-                    word-break: keep-all;   /* 단어 단위 줄바꿈으로 가독성 유지 */
+                    font-size: 0.8rem;   
+                    letter-spacing: -0.5px; 
+                    word-break: keep-all;   
                 }
         th { background: #f4f4f4; }
         .session-link { color: #004a99; font-weight: bold; cursor: pointer; text-decoration: underline; }
@@ -77,9 +91,33 @@
 
         /* 푸터 */
         footer { background: #333; color: white; text-align: center; padding: 40px 20px; font-size: 0.9em; }
+
+        /* 📱 모바일 (핸드폰) 화면을 위한 반응형 코드 추가 */
+        @media (max-width: 768px) {
+            body { padding-top: 95px; } /* 모바일 헤더 높이에 맞게 조정 */
+            
+            nav {
+                flex-direction: column; /* 로고와 메뉴를 위아래 2단 배치 */
+                justify-content: center;
+                gap: 8px;
+                padding: 8px 0;
+            }
+            .nav-logo {
+                height: 30px; /* 모바일에서 로고가 안 가리도록 대폭 축소 */
+            }
+            nav div {
+                justify-content: center;
+                gap: 5px 12px; /* 메뉴 간 격 좁히기 */
+            }
+            nav a {
+                font-size: 0.85rem; /* 글자 크기 축소하여 한 화면에 무조건 안착 */
+                padding: 3px 6px;
+            }
+        }
     </style>
 </head>
 <body id="top">
+
 
 <header>
     <nav>
